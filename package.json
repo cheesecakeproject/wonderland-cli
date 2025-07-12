@@ -1,0 +1,25 @@
+{
+  "name": "wonderland-cli",
+  "version": "1.0.0-beta",
+  "description": "Wonderland CLI 1.0 Beta - An AI system to power up your Ollama bot with brains",
+  "main": "index.js",
+  "bin": {
+    "wonderland": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["cli", "ai", "ollama", "agent", "multi-brain"],
+  "author": "Chezcake Team",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^9.2.12",
+    "axios": "^1.6.0",
+    "ora": "^7.0.1",
+    "conf": "^12.0.0"
+  },
+  "type": "module"
+} 

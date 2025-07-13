@@ -1,8 +1,8 @@
-# Wonderland CLI 1.2.4 🧠
+# Wonderland CLI 1.2.5 🧠
 
 [Official Website](https://wonderland-cli-v1.vercel.app/)
 
-[Release Notes for v1.2.4](releasenotes/v.1.2.4/note.md)
+[Release Notes for v1.2.5](releasenotes/v.1.2.5/note.md)
 
 ![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/main/images/thumbnail.png)
 

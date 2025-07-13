@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Wonderland CLI 1.2.4 Setup Script
+# Wonderland CLI 1.2.5 Setup Script
 # Made with ❤️ by the Chezcake Team
 
 set -e
@@ -32,7 +32,7 @@ print_error() {
 # Banner
 echo -e "${BLUE}"
 echo "╔══════════════════════════════════════════════════════════════╗"
-echo "║                    Wonderland CLI 1.2.4                      ║"
+echo "║                    Wonderland CLI 1.2.5                      ║"
 echo "║              An AI system to power up your Ollama            ║"
 echo "║                        bot with brains                        ║"
 echo "╚══════════════════════════════════════════════════════════════╝"

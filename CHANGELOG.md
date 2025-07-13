@@ -5,6 +5,12 @@ All notable changes to Wonderland CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.3] - 2025-07-13
+
+- Project fully synchronized and all directories (plugins, legaldocuments, images, releasenotes) are tracked by git
+- .gitignore and .npmignore rules finalized for correct inclusion/exclusion
+- Ready for npm and GitHub publish
+
 ## [1.2.1] - 2025-07-13
 
 ### 🔒 **Legal Compliance & Documentation**

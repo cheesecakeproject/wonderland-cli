@@ -23,8 +23,8 @@ const OLLAMA_BASE_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
 // Set up the CLI
 program
   .name('wonderland')
-  .description('Wonderland CLI 1.2.3 - An AI system to power up your Ollama bot with brains')
-  .version('1.2.3')
+  .description('Wonderland CLI 1.2.4 - An AI system to power up your Ollama bot with brains')
+  .version('1.2.4')
   .option('-setup4u', 'Run the setup.sh script automatically for you');
 
 // Logging system
@@ -383,7 +383,7 @@ program
     
     // Enhanced UI with status bar and better visual hierarchy
     console.log(chalk.blue('╔══════════════════════════════════════════════════════════════╗'));
-    console.log(chalk.blue('║                    🧠 Wonderland CLI 1.2.3                   ║'));
+    console.log(chalk.blue('║                    🧠 Wonderland CLI 1.2.4                   ║'));
     console.log(chalk.blue('╚══════════════════════════════════════════════════════════════╝'));
     console.log('');
     

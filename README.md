@@ -1,10 +1,10 @@
-# Wonderland CLI 1.2.3 🧠
+# Wonderland CLI 1.2.4 🧠
 
-[Official Website](https://wonderland-cli.vercel.app/)
+[Official Website](https://wonderland-cli-v1.vercel.app/)
 
-[Release Notes for v1.2.3](releasenotes/v.1.2.3/note.md)
+[Release Notes for v1.2.4](releasenotes/v.1.2.4/note.md)
 
-![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/beta/images/thumbnail.png)
+![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/main/images/thumbnail.png)
 
 [![npm version](https://img.shields.io/npm/v/wonderland-cli)](https://www.npmjs.com/package/wonderland-cli)
 [![GitHub](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/cheesecakeproject/wonderland-cli/tree/main)

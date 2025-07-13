@@ -1,8 +1,8 @@
-# Wonderland CLI 1.2.5 🧠
+# Wonderland CLI 1.3.0 🧠
 
 [Official Website](https://wonderland-cli-v1.vercel.app/)
 
-[Release Notes for v1.2.5](releasenotes/v.1.2.5/note.md)
+[Release Notes for v1.3.0](releasenotes/v.1.3.0/note.md)
 
 ![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/main/images/thumbnail.png)
 
@@ -35,6 +35,20 @@
 - **🌐 API Server Mode**: Run as a local HTTP API server
 - **📊 Advanced Analytics**: View usage stats with progress bars and visual dashboards
 - **🛑 Dangerous Reset**: Factory reset all settings, logs, and plugins
+
+## 🚀 New & Upcoming Features
+
+- Real-Time Brain-to-Brain Visibility: Main and Brain Agents see each other's thinking live.
+- Multi-Brain Parallel Research: Assign multiple brains to different research tasks at the same time.
+- Dynamic Brain Assignment: Main Agent can create, assign, and retire Brain Agents on demand.
+- Brain Specialization: Each Brain Agent can have a specialty (web, math, code, etc.).
+- Live Brain Status Dashboard: See all brains’ status and progress in real time.
+- Collaborative Brain Discussion: Brains can discuss and refine answers before reporting.
+- Interrupt & Reassign: Main Agent can change or reassign tasks on the fly.
+- Session Replay: Replay any session with real-time agent thinking.
+- Plugin Brains: Add custom Brain Agents as plugins.
+- Resource-Aware Scheduling: Main Agent manages system resources for optimal performance.
+- Content Awareness & User Query Tool: Agents can use `/usetool=askuser` to request clarification or context from the user in real time.
 
 ---
 

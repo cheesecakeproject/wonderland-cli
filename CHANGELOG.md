@@ -5,6 +5,20 @@ All notable changes to Wonderland CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-07-13
+
+- Real-Time Brain-to-Brain Visibility: Main and Brain Agents see each other's thinking live.
+- Multi-Brain Parallel Research: Assign multiple brains to different research tasks at the same time.
+- Dynamic Brain Assignment: Main Agent can create, assign, and retire Brain Agents on demand.
+- Brain Specialization: Each Brain Agent can have a specialty (web, math, code, etc.).
+- Live Brain Status Dashboard: See all brains’ status and progress in real time.
+- Collaborative Brain Discussion: Brains can discuss and refine answers before reporting.
+- Interrupt & Reassign: Main Agent can change or reassign tasks on the fly.
+- Session Replay: Replay any session with real-time agent thinking.
+- Plugin Brains: Add custom Brain Agents as plugins.
+- Resource-Aware Scheduling: Main Agent manages system resources for optimal performance.
+- Content Awareness & User Query Tool: Agents can use `/usetool=askuser` to request clarification or context from the user in real time.
+
 ## [1.2.5] - 2025-07-13
 
 - Version bump to 1.2.5

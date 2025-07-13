@@ -197,6 +197,8 @@ typings/
 !package.json
 !README.md
 !setup.sh
+!legaldocuments/
+!legaldocuments/*
 !images/
 !plugins/
 

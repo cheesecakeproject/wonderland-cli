@@ -20,4 +20,6 @@
 !package-lock.json
 !package.json
 !README.md
-!setup.sh 
+!setup.sh
+!legaldocuments/
+!legaldocuments/* 

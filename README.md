@@ -1,4 +1,4 @@
-# Wonderland CLI 1.2.0 🧠
+# Wonderland CLI 1.2.1 🧠
 
 ![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/beta/images/thumbnail.png)
 
@@ -166,6 +166,17 @@ See the code for how to add new commands, tools, and agents. Extend the CLI by a
 ## 📦 NPM Package
 
 - [wonderland-cli on npm](https://www.npmjs.com/package/wonderland-cli)
+
+---
+
+## 🔒 Legal Documents
+
+- [Privacy Policy](legaldocuments/PRIVACY.md) - Learn about data handling and third-party dependencies
+- [Terms of Use](legaldocuments/TERMS_OF_USE.md) - Complete terms and conditions
+- [User Agreement](legaldocuments/USER_AGREEMENT.md) - User agreement and responsibilities
+- [Client Side Agreement](legaldocuments/CLIENT_SIDE_AGREEMENT.md) - Client-side operations and risks
+- [Final Disclaimer](legaldocuments/FINAL_DISCLAIMER.md) - Critical legal notice and comprehensive disclaimers
+- [Legal Documents & Middleware Reference](legaldocuments/LEGAL_DOCUMENTS_AND_MIDDLEWARE.md) - Complete list of legal documents and middleware used
 
 ---
 

@@ -201,6 +201,7 @@ typings/
 !legaldocuments/*
 !images/
 !plugins/
+!releasenotes/
 
 # OS generated files
 .DS_Store

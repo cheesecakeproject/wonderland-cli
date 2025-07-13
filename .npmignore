@@ -22,4 +22,6 @@
 !README.md
 !setup.sh
 !legaldocuments/
-!legaldocuments/* 
+!legaldocuments/*
+!releasenotes/
+!releasenotes/* 

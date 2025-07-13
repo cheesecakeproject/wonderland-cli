@@ -10,7 +10,7 @@ import fs from 'fs';
 import path from 'path';
 import PDFDocument from 'pdfkit';
 import https from 'https';
-import { execSync } from 'child_process';
+import { execSync, spawn } from 'child_process';
 import readline from 'readline';
 import http from 'http';
 
@@ -23,8 +23,9 @@ const OLLAMA_BASE_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
 // Set up the CLI
 program
   .name('wonderland')
-  .description('Wonderland CLI 1.2.1 - An AI system to power up your Ollama bot with brains')
-  .version('1.2.1');
+  .description('Wonderland CLI 1.2.2 - An AI system to power up your Ollama bot with brains')
+  .version('1.2.2')
+  .option('-setup4u', 'Run the setup.sh script automatically for you');
 
 // Logging system
 const LOG_DIR = './logs';
@@ -382,7 +383,7 @@ program
     
     // Enhanced UI with status bar and better visual hierarchy
     console.log(chalk.blue('╔══════════════════════════════════════════════════════════════╗'));
-    console.log(chalk.blue('║                    🧠 Wonderland CLI 1.2.1                   ║'));
+    console.log(chalk.blue('║                    🧠 Wonderland CLI 1.2.2                   ║'));
     console.log(chalk.blue('╚══════════════════════════════════════════════════════════════╝'));
     console.log('');
     
@@ -1218,3 +1219,12 @@ program
     console.log(chalk.red('⚠️  All Wonderland CLI settings, logs, and plugins have been reset!'));
     console.log(chalk.red('You must run wonderland setup again.'));
   }); 
+
+// Handle -setup4u option
+if (process.argv.includes('-setup4u')) {
+  const setup = spawn('sh', ['setup.sh'], { stdio: 'inherit' });
+  setup.on('close', (code) => {
+    process.exit(code);
+  });
+  return;
+} 

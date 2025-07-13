@@ -1,4 +1,4 @@
-# Wonderland CLI 1.1.0-beta 🧠
+# Wonderland CLI 1.2.0 🧠
 
 ![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/beta/images/thumbnail.png)
 
@@ -14,12 +14,12 @@
 ## 🌟 Features
 
 - **🧠 Multi-Brain Architecture**: Main Agent (controller) and Brain Agent (researcher)
-- **⚡ Real-time Streaming**: Watch AI responses generate in real-time
+- **⚡ Real-time Streaming**: Watch AI responses generate in real-time with typing animations
 - **🔧 Tool-Based System**: Agents use `/usetool=` commands for collaboration
-- **📝 Comprehensive Logging**: Every session is logged
+- **📝 Comprehensive Logging**: Every session is logged with detailed analytics
 - **🎯 Smart Decision Making**: Simple questions get direct answers, complex ones use brain agent research
 - **💾 Chat History**: Recall previous conversations with `/usetool=recallchatlog?`
-- **🎨 Beautiful CLI**: Colored output and progress indicators
+- **🎨 Beautiful CLI**: Enhanced UI with progress bars, animated spinners, and visual hierarchy
 - **🔌 Plugin System**: Add, list, and remove custom tools/brains
 - **🧩 Model Management**: List, pull, and set Ollama models
 - **📝 Prompt Templates**: Save, use, list, and remove prompt templates
@@ -27,9 +27,9 @@
 - **🎭 Agent Personalities**: Switch between friendly, strict, creative, or custom personalities
 - **🌐 Web Search Tool**: Brain agent can use `/usetool=websearch?` for real web results
 - **🆕 Auto-Update Checker**: Notifies you of new versions and lets you choose when to update
-- **💬 Interactive Chat Mode**: REPL-style chat with the agent
+- **💬 Interactive Chat Mode**: REPL-style chat with enhanced UI and commands
 - **🌐 API Server Mode**: Run as a local HTTP API server
-- **📊 Analytics**: View usage stats and recent activity
+- **📊 Advanced Analytics**: View usage stats with progress bars and visual dashboards
 - **🛑 Dangerous Reset**: Factory reset all settings, logs, and plugins
 
 ---
@@ -98,13 +98,21 @@ You must run wonderland setup again.
 ## 💬 Interactive Chat Mode
 ```bash
 $ wonderland chat
-🧠 Wonderland CLI Chat Mode (type "exit" to quit)
-You: Hello!
-Wonderland: Hello! How can I help you today?
-You: Tell me a joke.
-Wonderland: Why did the AI cross the road? To optimize the chicken's path!
-You: exit
-👋 Chat session ended.
+╔══════════════════════════════════════════════════════════════╗
+║                    💬 CHAT MODE ACTIVE                       ║
+╚══════════════════════════════════════════════════════════════╝
+Type "exit" to quit, "help" for commands, "clear" to clear history
+
+💭 You: Hello!
+🧠 Wonderland: Hello! How can I help you today?
+
+💭 You: Tell me a joke.
+🧠 Wonderland: Why did the AI cross the road? To optimize the chicken's path!
+
+💭 You: exit
+╔══════════════════════════════════════════════════════════════╗
+║                      👋 CHAT ENDED                          ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 ---
@@ -118,20 +126,33 @@ POST /ask { "prompt": "your question" }
 
 ---
 
-## 📊 Analytics
+## 📊 Analytics Dashboard
 ```bash
 $ wonderland analytics
+╔══════════════════════════════════════════════════════════════╗
+║                    📊 ANALYTICS DASHBOARD                    ║
+╚══════════════════════════════════════════════════════════════╝
+
 📊 Wonderland CLI Analytics
-Total sessions: 12
-Total questions: 25
-Total tool calls: 8
-Most used tools:
-  - brain: 5
-  - websearch: 3
-Recent activity:
-- [2024-07-12T12:34:56Z] Q: What is Ollama?
-    A: Ollama is an open-source AI model runner for macOS.
-...
+──────────────────────────────────────────────────────────────────
+
+📈 Key Metrics:
+   Sessions: 12
+   Questions: 25
+   Tool Calls: 8
+
+🔧 Tool Usage:
+   brain          ████████████████████ 5
+   websearch      ████████████░░░░░░░░ 3
+
+🤖 Agent Usage:
+   llama2: 15
+   codellama: 10
+
+🕒 Recent Activity:
+   1. [2024-12-19T12:34:56Z]
+      Q: What is Ollama?
+      A: Ollama is an open-source AI model runner for macOS...
 ```
 
 ---
@@ -144,7 +165,7 @@ See the code for how to add new commands, tools, and agents. Extend the CLI by a
 
 ## 📦 NPM Package
 
-- [wonderland-cli on npm](https://www.npmjs.com/package/wonderland-cli/v/1.0.2-beta)
+- [wonderland-cli on npm](https://www.npmjs.com/package/wonderland-cli)
 
 ---
 

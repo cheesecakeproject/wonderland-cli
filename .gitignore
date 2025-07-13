@@ -170,17 +170,35 @@ typings/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# Wonderland CLI specific
-logs/
-*.json
-!package.json
+# Wonderland CLI specific - EXCLUDE EVERYTHING EXCEPT WHAT WE WANT
+# Only include these files for GitHub:
+# /images
+# /plugins  
+# .gitignore
+# .npmignore
+# CHANGELOG.md
+# index.js
+# LICENSE
+# package-lock.json
+# package.json
+# README.md
+# setup.sh
+
+# Exclude everything else
+*
+
+# But include the specific files we want
+!.gitignore
+!.npmignore
+!CHANGELOG.md
+!index.js
+!LICENSE
 !package-lock.json
-
-# Session logs (contain user data)
-logs/*.json
-
-# Configuration files (may contain sensitive data)
-config.json
+!package.json
+!README.md
+!setup.sh
+!images/
+!plugins/
 
 # OS generated files
 .DS_Store
@@ -202,4 +220,3 @@ Thumbs.db
 *.bak
 *.backup
 *.old 
-.npmignore 

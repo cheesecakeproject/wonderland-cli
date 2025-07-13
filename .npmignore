@@ -1,0 +1,23 @@
+# Wonderland CLI npm package - EXCLUDE EVERYTHING EXCEPT WHAT WE WANT
+# Only include these files for npm:
+# .npmignore
+# CHANGELOG.md
+# index.js
+# LICENSE
+# package-lock.json
+# package.json
+# README.md
+# setup.sh
+
+# Exclude everything else
+*
+
+# But include the specific files we want
+!.npmignore
+!CHANGELOG.md
+!index.js
+!LICENSE
+!package-lock.json
+!package.json
+!README.md
+!setup.sh 

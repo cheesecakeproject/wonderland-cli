@@ -23,8 +23,8 @@ const OLLAMA_BASE_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
 // Set up the CLI
 program
   .name('wonderland')
-  .description('Wonderland CLI 1.0 Beta - An AI system to power up your Ollama bot with brains')
-  .version('1.1.0-beta');
+  .description('Wonderland CLI 1.2.0 - An AI system to power up your Ollama bot with brains')
+  .version('1.2.0');
 
 // Logging system
 const LOG_DIR = './logs';
@@ -85,9 +85,16 @@ async function generateStreamingResponse(model, prompt, systemPrompt = '', agent
   const startTime = Date.now();
   let fullResponse = '';
   let toolCalls = [];
+  let responseLength = 0;
+  let lastProgressUpdate = Date.now();
   
   try {
-    console.log(chalk.blue(`\n🧠 ${agentName} is thinking...\n`));
+    // Enhanced thinking indicator with animated dots
+    const thinkingSpinner = ora({
+      text: chalk.blue(`🧠 ${agentName} is thinking`),
+      color: 'blue',
+      spinner: 'dots'
+    }).start();
     
     const response = await axios.post(`${OLLAMA_BASE_URL}/api/generate`, {
       model: model,
@@ -99,6 +106,12 @@ async function generateStreamingResponse(model, prompt, systemPrompt = '', agent
     });
 
     return new Promise((resolve, reject) => {
+      // Stop the thinking spinner and start response
+      thinkingSpinner.stop();
+      
+      // Show typing indicator
+      console.log(chalk.cyan(`💬 ${agentName} is typing...\n`));
+      
       response.data.on('data', (chunk) => {
         const lines = chunk.toString().split('\n');
         
@@ -108,8 +121,23 @@ async function generateStreamingResponse(model, prompt, systemPrompt = '', agent
           try {
             const data = JSON.parse(line);
             if (data.response) {
-              process.stdout.write(chalk.cyan(data.response));
-              fullResponse += data.response;
+              // Add typing delay for more natural feel
+              const now = Date.now();
+              if (now - lastProgressUpdate > 50) { // 50ms delay between characters
+                process.stdout.write(chalk.cyan(data.response));
+                fullResponse += data.response;
+                responseLength += data.response.length;
+                lastProgressUpdate = now;
+                
+                // Show progress indicator every 100 characters
+                if (responseLength % 100 === 0) {
+                  process.stdout.write(chalk.gray(` [${responseLength} chars]`));
+                }
+              } else {
+                // Buffer the response for smoother output
+                fullResponse += data.response;
+                responseLength += data.response.length;
+              }
             }
           } catch (e) {
             // Skip invalid JSON lines
@@ -119,7 +147,9 @@ async function generateStreamingResponse(model, prompt, systemPrompt = '', agent
 
       response.data.on('end', () => {
         const duration = Date.now() - startTime;
-        console.log(chalk.green(`\n✅ ${agentName} completed (${duration}ms)\n`));
+        const wordsPerMinute = Math.round((responseLength / 5) / (duration / 60000));
+        
+        console.log(chalk.green(`\n✅ ${agentName} completed (${duration}ms, ${responseLength} chars, ~${wordsPerMinute} wpm)\n`));
         
         // Extract tool calls from response
         toolCalls = extractToolCalls(fullResponse);
@@ -129,6 +159,7 @@ async function generateStreamingResponse(model, prompt, systemPrompt = '', agent
       });
 
       response.data.on('error', (error) => {
+        thinkingSpinner.stop();
         reject(new Error(`Error generating response from ${model}: ${error.message}`));
       });
     });
@@ -159,7 +190,9 @@ async function executeToolCalls(toolCalls, brainAgent) {
   const results = [];
   
   for (const toolCall of toolCalls) {
-    console.log(chalk.yellow(`\n🔧 Executing tool: ${toolCall.tool} with query: ${toolCall.query}`));
+    console.log(chalk.cyan(`\n🔧 [${toolCalls.indexOf(toolCall) + 1}/${toolCalls.length}] Executing: ${toolCall.tool}`));
+    console.log(chalk.gray(`   Query: ${toolCall.query}`));
+    console.log(chalk.gray('   ─'.repeat(40)));
     
     if (toolCall.tool === 'brain') {
       // Call brain agent for information gathering
@@ -347,10 +380,37 @@ program
       });
     }
     
-    console.log(chalk.blue('🧠 Multi-Brain Agent Workflow'));
-    console.log(chalk.gray('Prompt:'), finalPrompt);
-    console.log(chalk.gray('Session Log:'), LOG_FILE);
+    // Enhanced UI with status bar and better visual hierarchy
+    console.log(chalk.blue('╔══════════════════════════════════════════════════════════════╗'));
+    console.log(chalk.blue('║                    🧠 Wonderland CLI 1.2.0                   ║'));
+    console.log(chalk.blue('╚══════════════════════════════════════════════════════════════╝'));
     console.log('');
+    
+    // Status bar
+    const statusBar = [
+      chalk.blue('📊 Status:'),
+      chalk.green('✅ Ready'),
+      chalk.blue('|'),
+      chalk.cyan('🤖 Main Agent:'),
+      chalk.white(mainAgent),
+      chalk.blue('|'),
+      chalk.cyan('🧠 Brain Agent:'),
+      chalk.white(brainAgent)
+    ].join(' ');
+    
+    console.log(statusBar);
+    console.log(chalk.gray('─'.repeat(80)));
+    
+    // Enhanced prompt display
+    console.log(chalk.yellow('💭 Question:'));
+    console.log(chalk.white(`   ${finalPrompt}`));
+    console.log('');
+    
+    // Session info in a subtle way
+    if (options.verbose) {
+      console.log(chalk.gray(`📝 Session Log: ${LOG_FILE}`));
+      console.log('');
+    }
     
     try {
       // Main agent system prompt with tool instructions
@@ -376,7 +436,9 @@ Answer:`;
       
       // Execute any tool calls found in the main agent's response
       if (mainResult.toolCalls.length > 0) {
-        console.log(chalk.yellow(`\n🔧 Main Agent requested ${mainResult.toolCalls.length} tool calls`));
+        console.log(chalk.yellow('\n╔══════════════════════════════════════════════════════════════╗'));
+        console.log(chalk.yellow(`║                    🔧 TOOL EXECUTION (${mainResult.toolCalls.length} tools)                    ║`));
+        console.log(chalk.yellow('╚══════════════════════════════════════════════════════════════╝'));
         const toolResults = await executeToolCalls(mainResult.toolCalls, brainAgent);
         
         // Post-processing: Only show the last /usetool=finalans? result for simple prompts
@@ -393,9 +455,14 @@ Answer:`;
             toolResults: toolResults
           });
           
-          console.log(chalk.green('\n🎯 Final Answer:')); 
-          console.log(finalAnswer.result);
-          console.log(chalk.green('\n🎯 Session Complete!'));
+          // Enhanced final answer display
+          console.log(chalk.green('\n╔══════════════════════════════════════════════════════════════╗'));
+          console.log(chalk.green('║                        🎯 FINAL ANSWER                        ║'));
+          console.log(chalk.green('╚══════════════════════════════════════════════════════════════╝'));
+          console.log(chalk.white(`\n${finalAnswer.result}`));
+          console.log(chalk.green('\n╔══════════════════════════════════════════════════════════════╗'));
+          console.log(chalk.green('║                      ✅ SESSION COMPLETE                      ║'));
+          console.log(chalk.green('╚══════════════════════════════════════════════════════════════╝'));
           
         } else {
           // No final answer yet, give main agent the tool results
@@ -917,18 +984,51 @@ program
       console.log(chalk.red('❌ Please run setup first: wonderland setup'));
       return;
     }
+    
+    // Enhanced chat mode UI
+    console.log(chalk.blue('╔══════════════════════════════════════════════════════════════╗'));
+    console.log(chalk.blue('║                    💬 CHAT MODE ACTIVE                       ║'));
+    console.log(chalk.blue('╚══════════════════════════════════════════════════════════════╝'));
+    console.log(chalk.gray('Type "exit" to quit, "help" for commands, "clear" to clear history'));
+    console.log('');
+    
     const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-    console.log(chalk.blue('🧠 Wonderland CLI Chat Mode (type "exit" to quit)'));
     let chatLog = [];
+    
     async function askPrompt() {
-      rl.question(chalk.cyan('You: '), async (userInput) => {
+      rl.question(chalk.cyan('💭 You: '), async (userInput) => {
         if (userInput.trim().toLowerCase() === 'exit') {
           rl.close();
           // Log the chat session
           logSession({ type: 'chat_session', chatLog });
-          console.log(chalk.green('👋 Chat session ended.'));
+          console.log(chalk.green('╔══════════════════════════════════════════════════════════════╗'));
+          console.log(chalk.green('║                      👋 CHAT ENDED                          ║'));
+          console.log(chalk.green('╚══════════════════════════════════════════════════════════════╝'));
           return;
         }
+        
+        if (userInput.trim().toLowerCase() === 'help') {
+          console.log(chalk.yellow('Available commands:'));
+          console.log(chalk.gray('  exit - Quit chat mode'));
+          console.log(chalk.gray('  help - Show this help'));
+          console.log(chalk.gray('  clear - Clear chat history'));
+          console.log('');
+          askPrompt();
+          return;
+        }
+        
+        if (userInput.trim().toLowerCase() === 'clear') {
+          console.log(chalk.yellow('Chat history cleared.'));
+          console.log('');
+          askPrompt();
+          return;
+        }
+        
+        if (userInput.trim() === '') {
+          askPrompt();
+          return;
+        }
+        
         // Use the same main agent prompt logic as ask command
         const mainAgentSystemPrompt = `You are a helpful AI assistant. Answer questions directly.\n\nTools:\n- /usetool=brain?\"question\" - Get detailed info from brain agent\n- /usetool=recallchatlog?\"timeframe\" - Check chat history\n- /usetool=finalans?\"answer\" - End with your answer\n\nIMPORTANT:\n- If the user's question is a simple greeting or can be answered directly, reply ONLY with /usetool=finalans?\"your answer\". Do NOT use any other tools, explanations, or extra text for simple greetings or direct questions. Do not output anything else.\n- For complex questions, use the brain agent first, then end with /usetool=finalans?\"your answer\".\n- Use \\n for line breaks.`;
         const mainAgentPrompt = `User: "${userInput}"\n\nAnswer this question directly. If simple, answer now and ONLY output /usetool=finalans?\"your answer\". If complex, use /usetool=brain?\"specific question\" first, then end with /usetool=finalans?\"your answer\".\n\nAnswer:`;
@@ -940,10 +1040,12 @@ program
             const allFinalAnswers = toolResults.filter(result => result.tool === 'finalans');
             finalAnswer = allFinalAnswers.length > 0 ? allFinalAnswers[allFinalAnswers.length - 1].result : finalAnswer;
           }
-          console.log(chalk.magenta(`Wonderland: ${finalAnswer}`));
+          console.log(chalk.magenta(`🧠 Wonderland: ${finalAnswer}`));
+          console.log(''); // Add spacing between messages
           chatLog.push({ prompt: userInput, response: finalAnswer });
         } catch (e) {
-          console.log(chalk.red('Error:', e.message));
+          console.log(chalk.red('❌ Error:', e.message));
+          console.log('');
         }
         askPrompt();
       });
@@ -1009,11 +1111,26 @@ program
     if (logFiles.length === 0) {
       console.log(chalk.yellow('No session logs found.')); return;
     }
+    
+    // Enhanced analytics UI with progress indicator
+    console.log(chalk.blue('╔══════════════════════════════════════════════════════════════╗'));
+    console.log(chalk.blue('║                    📊 ANALYTICS DASHBOARD                    ║'));
+    console.log(chalk.blue('╚══════════════════════════════════════════════════════════════╝'));
+    console.log('');
+    
+    const analyticsSpinner = ora({
+      text: chalk.cyan('Analyzing log files...'),
+      color: 'cyan',
+      spinner: 'dots'
+    }).start();
+    
     let sessions = 0, questions = 0, toolCalls = 0, toolUsage = {}, agentUsage = {}, recent = [];
-    logFiles.forEach(file => {
+    
+    logFiles.forEach((file, index) => {
       const logPath = path.join(LOG_DIR, file);
       const logContent = fs.readFileSync(logPath, 'utf-8');
       const entries = logContent.split('\n---\n').filter(Boolean).map(e => { try { return JSON.parse(e); } catch { return null; } }).filter(Boolean);
+      
       entries.forEach(entry => {
         if (entry.type === 'session_start' || entry.type === 'chat_session' || entry.type === 'api_session') sessions++;
         if (entry.prompt) questions++;
@@ -1034,26 +1151,53 @@ program
           response: entry.response
         });
       });
+      
+      // Update progress
+      analyticsSpinner.text = chalk.cyan(`Analyzing log files... (${index + 1}/${logFiles.length})`);
     });
-    // Show analytics
+    
+    analyticsSpinner.stop();
+    
+    // Enhanced analytics display
     console.log(chalk.green('📊 Wonderland CLI Analytics'));
-    console.log('Total sessions:', sessions);
-    console.log('Total questions:', questions);
-    console.log('Total tool calls:', toolCalls);
-    console.log('Most used tools:');
-    Object.entries(toolUsage).sort((a,b) => b[1]-a[1]).forEach(([tool, count]) => {
-      console.log(`  - ${tool}: ${count}`);
-    });
-    if (Object.keys(agentUsage).length) {
-      console.log('Most used agents:');
-      Object.entries(agentUsage).sort((a,b) => b[1]-a[1]).forEach(([agent, count]) => {
-        console.log(`  - ${agent}: ${count}`);
+    console.log(chalk.gray('─'.repeat(50)));
+    
+    // Key metrics with better formatting
+    console.log(chalk.blue('📈 Key Metrics:'));
+    console.log(chalk.white(`   Sessions: ${chalk.green(sessions)}`));
+    console.log(chalk.white(`   Questions: ${chalk.green(questions)}`));
+    console.log(chalk.white(`   Tool Calls: ${chalk.green(toolCalls)}`));
+    console.log('');
+    
+    // Tool usage with progress bars
+    if (Object.keys(toolUsage).length > 0) {
+      console.log(chalk.blue('🔧 Tool Usage:'));
+      const maxToolUsage = Math.max(...Object.values(toolUsage));
+      Object.entries(toolUsage).sort((a,b) => b[1]-a[1]).forEach(([tool, count]) => {
+        const percentage = Math.round((count / maxToolUsage) * 20);
+        const bar = '█'.repeat(percentage) + '░'.repeat(20 - percentage);
+        console.log(chalk.white(`   ${tool.padEnd(15)} ${chalk.cyan(bar)} ${chalk.green(count)}`));
       });
+      console.log('');
     }
-    console.log('Recent activity:');
-    recent.slice(-5).forEach(r => {
-      console.log(`- [${r.time}] ${r.prompt ? 'Q: ' + r.prompt : ''}`);
-      if (r.response) console.log(`    A: ${r.response}`);
+    
+    // Agent usage
+    if (Object.keys(agentUsage).length > 0) {
+      console.log(chalk.blue('🤖 Agent Usage:'));
+      Object.entries(agentUsage).sort((a,b) => b[1]-a[1]).forEach(([agent, count]) => {
+        console.log(chalk.white(`   ${agent}: ${chalk.green(count)}`));
+      });
+      console.log('');
+    }
+    
+    // Recent activity with better formatting
+    console.log(chalk.blue('🕒 Recent Activity:'));
+    recent.slice(-5).forEach((r, index) => {
+      const time = new Date(r.time).toLocaleString();
+      console.log(chalk.gray(`   ${index + 1}. [${time}]`));
+      if (r.prompt) console.log(chalk.white(`      Q: ${r.prompt}`));
+      if (r.response) console.log(chalk.cyan(`      A: ${r.response.substring(0, 100)}${r.response.length > 100 ? '...' : ''}`));
+      console.log('');
     });
   });
 

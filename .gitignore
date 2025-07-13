@@ -172,7 +172,6 @@ typings/
 
 # Wonderland CLI specific - EXCLUDE EVERYTHING EXCEPT WHAT WE WANT
 # Only include these files for GitHub:
-# /images
 # /plugins  
 # .gitignore
 # .npmignore
@@ -199,9 +198,12 @@ typings/
 !setup.sh
 !legaldocuments/
 !legaldocuments/*
-!images/
-!plugins/
 !releasenotes/
+!releasenotes/*
+!images/
+!images/*
+!plugins/
+!plugins/*
 
 # OS generated files
 .DS_Store

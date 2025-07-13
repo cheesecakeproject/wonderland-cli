@@ -23,5 +23,7 @@
 !setup.sh
 !legaldocuments/
 !legaldocuments/*
-!releasenotes/
-!releasenotes/* 
+!plugins/
+!plugins/*
+# !images/
+# !images/* 

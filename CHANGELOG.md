@@ -5,6 +5,32 @@ All notable changes to Wonderland CLI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2025-07-13
+
+### 🔒 **Legal Compliance & Documentation**
+
+#### 📋 **Comprehensive Legal Documents**
+- **New Legal Documents Directory**: Added `legaldocuments/` folder with complete legal framework
+- **Privacy Policy**: Comprehensive data handling and third-party dependency information
+- **Terms of Use**: Complete terms and conditions for Wonderland CLI usage
+- **User Agreement**: User responsibilities and agreement terms
+- **Client Side Agreement**: Client-side operations and associated risks
+- **Final Disclaimer**: Critical legal notice with comprehensive disclaimers
+- **Legal Documents & Middleware Reference**: Complete documentation of all legal documents and middleware used
+
+#### 📚 **Documentation Updates**
+- **Enhanced README**: Updated with legal document references and links
+- **Legal Section**: Added dedicated legal documents section in README
+- **File Management**: Updated `.gitignore` and `.npmignore` for proper legal document handling
+- **Version Consistency**: Updated all version references to 1.2.1 across all files
+
+#### 🔧 **Technical Improvements**
+- **File Organization**: Properly organized legal documents in dedicated directory
+- **Version Management**: Consistent version numbering across package.json, index.js, README, and setup.sh
+- **Documentation Links**: All legal documents properly referenced in README
+
+---
+
 ## [1.2.0] - 2025-07-13
 
 ### 🎉 Official Release

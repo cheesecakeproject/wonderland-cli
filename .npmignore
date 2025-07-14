@@ -14,6 +14,7 @@
 
 # But include the specific files we want
 !.npmignore
+!HOWTOUSE.md
 !CHANGELOG.md
 !index.js
 !LICENSE

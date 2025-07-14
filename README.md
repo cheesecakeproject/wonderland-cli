@@ -24,6 +24,12 @@ wonderland ask "What is the capital of France?"
 
 ---
 
+## 📖 Full Manual
+
+See [HOWTOUSE.md](./HOWTOUSE.md) for a complete user & developer guide, including setup, features, advanced usage, open-source logic, and troubleshooting.
+
+---
+
 ## ✨ What's New & Exciting in v1.3.0
 
 - **One-Step Setup:** `wonderland -setup4u` runs the full setup automatically

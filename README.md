@@ -1,7 +1,6 @@
 # Wonderland CLI 1.3.0 🧠
 
 [Official Website](https://wonderland-cli-v1.vercel.app/)
-
 [Release Notes for v1.3.0](releasenotes/v.1.3.0/note.md)
 
 ![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/main/images/thumbnail.png)
@@ -15,169 +14,128 @@
 
 ---
 
-## 🌟 Features
+## 🚀 Quick Start
 
-- **🧠 Multi-Brain Architecture**: Main Agent (controller) and Brain Agent (researcher)
-- **⚡ Real-time Streaming**: Watch AI responses generate in real-time with typing animations
-- **🔧 Tool-Based System**: Agents use `/usetool=` commands for collaboration
-- **📝 Comprehensive Logging**: Every session is logged with detailed analytics
-- **🎯 Smart Decision Making**: Simple questions get direct answers, complex ones use brain agent research
-- **💾 Chat History**: Recall previous conversations with `/usetool=recallchatlog?`
-- **🎨 Beautiful CLI**: Enhanced UI with progress bars, animated spinners, and visual hierarchy
-- **🔌 Plugin System**: Add, list, and remove custom tools/brains
-- **🧩 Model Management**: List, pull, and set Ollama models
-- **📝 Prompt Templates**: Save, use, list, and remove prompt templates
-- **📤 Session Export**: Export logs to markdown, JSON, or PDF (black & white)
-- **🎭 Agent Personalities**: Switch between friendly, strict, creative, or custom personalities
-- **🌐 Web Search Tool**: Brain agent can use `/usetool=websearch?` for real web results
-- **🆕 Auto-Update Checker**: Notifies you of new versions and lets you choose when to update
-- **💬 Interactive Chat Mode**: REPL-style chat with enhanced UI and commands
-- **🌐 API Server Mode**: Run as a local HTTP API server
-- **📊 Advanced Analytics**: View usage stats with progress bars and visual dashboards
-- **🛑 Dangerous Reset**: Factory reset all settings, logs, and plugins
-
-## 🚀 New & Upcoming Features
-
-- Real-Time Brain-to-Brain Visibility: Main and Brain Agents see each other's thinking live.
-- Multi-Brain Parallel Research: Assign multiple brains to different research tasks at the same time.
-- Dynamic Brain Assignment: Main Agent can create, assign, and retire Brain Agents on demand.
-- Brain Specialization: Each Brain Agent can have a specialty (web, math, code, etc.).
-- Live Brain Status Dashboard: See all brains’ status and progress in real time.
-- Collaborative Brain Discussion: Brains can discuss and refine answers before reporting.
-- Interrupt & Reassign: Main Agent can change or reassign tasks on the fly.
-- Session Replay: Replay any session with real-time agent thinking.
-- Plugin Brains: Add custom Brain Agents as plugins.
-- Resource-Aware Scheduling: Main Agent manages system resources for optimal performance.
-- Content Awareness & User Query Tool: Agents can use `/usetool=askuser` to request clarification or context from the user in real time.
+```bash
+npm install -g wonderland-cli
+wonderland setup
+wonderland ask "What is the capital of France?"
+```
 
 ---
 
-## 📋 Commands
+## 🌟 Features
+
+### Multi-Brain & Real-Time AI
+- **Multi-Brain Architecture**: Main Agent and multiple Brain Agents
+- **Real-Time Brain-to-Brain Visibility**: See all agents' thinking live
+- **Parallel Research**: Assign multiple brains to different tasks at once
+- **Dynamic Brain Assignment**: Add, edit, retire, and specialize brain agents on demand
+- **Brain Specialization**: Assign specialties (web, math, code, etc.) to each brain
+- **Live Brain Status Dashboard**: Real-time dashboard with visual indicators
+- **Collaborative Brain Discussion**: Brains critique and refine answers together
+- **Plugin Brains**: Add custom Brain Agents as plugins
+
+### Advanced Control & Scheduling
+- **Interrupt & Reassign**: Interrupt any agent and reassign tasks (manual or automatic)
+- **Session Replay**: Replay any session with real-time agent thinking
+- **Resource-Aware Scheduling**: Monitors memory, CPU, and agent usage; throttles as needed
+- **Content Awareness & User Query Tool**: Agents can ask you for clarification in real time
+
+### CLI & Usability
+- **Beautiful CLI**: Minimal, clean UI with progress bars and spinners
+- **Comprehensive Logging**: Every session is logged for analytics and replay
+- **Session Export**: Export logs to markdown, JSON, or PDF
+- **Interactive Chat Mode**: REPL-style chat with enhanced UI
+- **API Server Mode**: Run as a local HTTP API server
+- **Advanced Analytics**: View usage stats and dashboards
+- **Plugin System**: Add, list, and remove custom tools/brains
+- **Model Management**: List, pull, and set Ollama models
+- **Prompt Templates**: Save, use, and manage prompt templates
+- **Agent Personalities**: Switch between friendly, strict, creative, or custom personalities
+- **Auto-Update Checker**: Notifies you of new versions
+- **Dangerous Reset**: Factory reset all settings, logs, and plugins
+
+---
+
+## 📋 Commands (Essentials)
 
 | Command | Description |
 |---------|-------------|
 | `wonderland setup` | Configure your agents |
 | `wonderland ask <prompt>` | Ask a question |
-| `wonderland ask <placeholder> -i <prompt>` | Non-interactive testing |
-| `wonderland status` | Check Ollama and configuration |
-| `wonderland logs` | View recent sessions |
-| `wonderland plugin add <path>` | Add a plugin (JS file) |
-| `wonderland plugin list` | List installed plugins |
-| `wonderland plugin remove <name>` | Remove a plugin |
-| `wonderland models list` | List available Ollama models |
-| `wonderland models pull <model>` | Pull a new model |
-| `wonderland models use <model>` | Set default model |
-| `wonderland template save <name> <prompt>` | Save a prompt template |
-| `wonderland template use <name>` | Use/view a template |
-| `wonderland template list` | List templates |
-| `wonderland template remove <name>` | Remove a template |
-| `wonderland export --format <markdown|json|pdf> [--output <file>]` | Export session log |
-| `wonderland persona list` | List agent personalities |
-| `wonderland persona set <personality>` | Set active personality |
-| `wonderland persona custom [prompt] [--reset]` | Set/view/reset custom personality |
+| `wonderland dashboard` | Live brain status dashboard |
+| `wonderland replay` | Replay a session with real-time agent thinking |
+| `wonderland resources` | Show system resource usage and scheduling status |
+| `wonderland interrupt` | Interrupt and reassign brain agent tasks |
+| `wonderland reassign` | Reassign specific interrupted tasks |
+| `wonderland auto-reassign` | Auto-reassign all interrupted tasks |
+| `wonderland auto-interrupt` | Automatically interrupt agents based on conditions |
 | `wonderland chat` | Start interactive chat mode |
 | `wonderland serve [--port <port>]` | Run as local API server |
 | `wonderland analytics` | Show usage analytics |
-| `wonderland -danger -settings -reset` | Factory reset all settings, logs, plugins |
+| `wonderland export --format <markdown|json|pdf>` | Export session log |
 | `wonderland --help` | Show help |
 
 ---
 
 ## 🧠 How It Works
 
-### Tool-Based Communication
-
-Agents use special commands:
+Agents communicate using special tool commands:
 - `/usetool=brain?"query"` — Call brain agent for research
 - `/usetool=websearch?"query"` — Brain agent performs a real web search
 - `/usetool=recallchatlog?"timeframe"` — Check chat history
+- `/usetool=askuser?"question"` — Ask the user for clarification/context
 - `/usetool=finalans?"answer"` — End with final answer
-
-### Example: Web Search Tool
-```bash
-$ wonderland ask "What is the capital of France?"
-🧠 Main Agent is thinking...
-/usetool=websearch?"capital of France"
-🌐 Web Search Result: Paris is the capital of France.
-/usetool=finalans?"Paris is the capital of France."
-🎯 Final Answer:
-Paris is the capital of France.
-```
-
-### Example: Dangerous Reset
-```bash
-$ wonderland -danger -settings -reset
-⚠️  All Wonderland CLI settings, logs, and plugins have been reset!
-You must run wonderland setup again.
-```
 
 ---
 
-## 💬 Interactive Chat Mode
+## 💡 Examples
+
+### Multi-Brain Research
 ```bash
-$ wonderland chat
-╔══════════════════════════════════════════════════════════════╗
-║                    💬 CHAT MODE ACTIVE                       ║
-╚══════════════════════════════════════════════════════════════╝
-Type "exit" to quit, "help" for commands, "clear" to clear history
+wonderland ask "Research AI trends and machine learning applications" --multi-brain
+```
 
-💭 You: Hello!
-🧠 Wonderland: Hello! How can I help you today?
+### Interrupt & Reassign
+```bash
+wonderland interrupt
+wonderland auto-reassign
+wonderland auto-interrupt --time 180
+```
 
-💭 You: Tell me a joke.
-🧠 Wonderland: Why did the AI cross the road? To optimize the chicken's path!
+### Session Replay
+```bash
+wonderland replay -l
+wonderland replay -f session-1234567890.json -s fast
+```
 
-💭 You: exit
-╔══════════════════════════════════════════════════════════════╗
-║                      👋 CHAT ENDED                          ║
-╚══════════════════════════════════════════════════════════════╝
+### Resource Monitoring
+```bash
+wonderland resources
+wonderland resources -m -i 5
+```
+
+### Content Awareness
+```bash
+# Agent asks you for clarification during a session
+/usetool=askuser?"Can you clarify your request?"
 ```
 
 ---
 
 ## 🌐 API Server Mode
 ```bash
-$ wonderland serve --port 3000
-🌐 Wonderland CLI API server running on http://localhost:3000
-POST /ask { "prompt": "your question" }
+wonderland serve --port 3000
+# POST /ask { "prompt": "your question" }
 ```
 
 ---
 
 ## 📊 Analytics Dashboard
 ```bash
-$ wonderland analytics
-╔══════════════════════════════════════════════════════════════╗
-║                    📊 ANALYTICS DASHBOARD                    ║
-╚══════════════════════════════════════════════════════════════╝
-
-📊 Wonderland CLI Analytics
-──────────────────────────────────────────────────────────────────
-
-📈 Key Metrics:
-   Sessions: 12
-   Questions: 25
-   Tool Calls: 8
-
-🔧 Tool Usage:
-   brain          ████████████████████ 5
-   websearch      ████████████░░░░░░░░ 3
-
-🤖 Agent Usage:
-   llama2: 15
-   codellama: 10
-
-🕒 Recent Activity:
-   1. [2025-07-13T12:34:56Z]
-      Q: What is Ollama?
-      A: Ollama is an open-source AI model runner for macOS...
+wonderland analytics
 ```
-
----
-
-## 🛠️ Development
-
-See the code for how to add new commands, tools, and agents. Extend the CLI by adding plugins to the `plugins/` directory.
 
 ---
 
@@ -194,6 +152,9 @@ See the code for how to add new commands, tools, and agents. Extend the CLI by a
 - [User Agreement](https://github.com/cheesecakeproject/wonderland-cli/blob/main/legaldocuments/USER_AGREEMENT.md)
 - [Client Side Agreement](https://github.com/cheesecakeproject/wonderland-cli/blob/main/legaldocuments/CLIENT_SIDE_AGREEMENT.md)
 - [Final Disclaimer](https://github.com/cheesecakeproject/wonderland-cli/blob/main/legaldocuments/FINAL_DISCLAIMER.md)
+- [AI Legal Protection](https://github.com/cheesecakeproject/wonderland-cli/blob/main/legaldocuments/AI_LEGAL_PROTECTION.md)
+- [Legal Summary](https://github.com/cheesecakeproject/wonderland-cli/blob/main/legaldocuments/LEGAL_SUMMARY.md)
+- [Final Legal Summary](https://github.com/cheesecakeproject/wonderland-cli/blob/main/legaldocuments/FINAL-LEGAL-SUMMARY.md)
 - [Legal Documents & Middleware Reference](https://github.com/cheesecakeproject/wonderland-cli/blob/main/legaldocuments/LEGAL_DOCUMENTS_AND_MIDDLEWARE.md)
 
 ---

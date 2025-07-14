@@ -187,6 +187,11 @@ typings/
 *
 
 # But include the specific files we want
+!releasenotes/v.1.3.0/*
+!releasenotes/v.1.2.5/*
+!releasenotes/v.1.2.4/*
+!releasenotes/v.1.2.3/*
+!releasenotes/v.1.2.2/*
 !.gitignore
 !.npmignore
 !CHANGELOG.md

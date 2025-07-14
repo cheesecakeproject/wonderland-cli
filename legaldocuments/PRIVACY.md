@@ -1,6 +1,6 @@
 # Privacy Policy for Wonderland CLI
 
-**Last Updated: 2025-07-13 (v1.2.1)**
+**Last Updated: 2025-07-14 (v1.3.0)**
 
 ## Overview
 Wonderland CLI is a local AI assistant tool that operates entirely on your machine. We are committed to protecting your privacy and ensuring transparency about data handling.

@@ -1,6 +1,6 @@
 # Client Side Agreement for Wonderland CLI
 
-**Last Updated: 2025-07-13 (v1.2.1)**
+**Last Updated: 2025-07-14 (v1.3.0)**
 
 ## Client Acknowledgment
 

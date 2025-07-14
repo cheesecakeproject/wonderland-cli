@@ -1,6 +1,6 @@
 # Terms of Use for Wonderland CLI
 
-**Last Updated: 2025-07-13 (v1.2.1)**
+**Last Updated: 2025-07-14 (v1.3.0)**
 
 ## 1. Acceptance of Terms
 

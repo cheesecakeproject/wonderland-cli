@@ -1,6 +1,6 @@
 # Legal Documents and Middleware Reference - Wonderland CLI
 
-**Last Updated: 2025-07-13 (v1.2.1)**
+**Last Updated: 2025-07-14 (v1.3.0)**
 
 ## 📄 Legal Documents Used in Wonderland CLI
 
@@ -10,10 +10,13 @@
 3. **[Client Side Agreement](CLIENT_SIDE_AGREEMENT.md)** - Client-side operations and risks
 4. **[Privacy Policy](PRIVACY.md)** - Data handling and third-party dependencies
 5. **[Final Disclaimer](FINAL_DISCLAIMER.md)** - Critical legal notice and comprehensive disclaimers
-6. **[LICENSE](LICENSE)** - MIT License for the software
+6. **[AI Legal Protection](AI_LEGAL_PROTECTION.md)** - Comprehensive AI-specific legal protections and disclaimers
+7. **[Legal Summary](LEGAL_SUMMARY.md)** - Comprehensive legal protection overview and summary
+8. **[Final Legal Summary](FINAL-LEGAL-SUMMARY.md)** - Maximum legal protection against all possible lawsuits
+9. **[LICENSE](LICENSE)** - MIT License for the software
 
 ### Legal Document References
-- All legal documents are dated **2025-07-13**
+- All legal documents are dated **2025-07-14**
 - All documents contain strong liability disclaimers
 - All documents reference third-party middleware
 - All documents emphasize user responsibility

@@ -18,9 +18,30 @@
 
 ```bash
 npm install -g wonderland-cli
-wonderland setup
+wonderland -setup4u   # New: one-step automatic setup
 wonderland ask "What is the capital of France?"
 ```
+
+---
+
+## ✨ What's New & Exciting in v1.3.0
+
+- **One-Step Setup:** `wonderland -setup4u` runs the full setup automatically
+- **Multi-Brain Architecture:** Main Agent + multiple Brain Agents
+- **Real-Time Brain-to-Brain Visibility:** See all agents' thinking live
+- **Parallel Research:** Assign multiple brains to different tasks at once
+- **Dynamic Brain Assignment:** Add, edit, retire, and specialize brain agents on demand
+- **Brain Specialization:** Assign specialties (web, math, code, etc.) to each brain
+- **Live Brain Status Dashboard:** Real-time dashboard with visual indicators
+- **Collaborative Brain Discussion:** Brains critique and refine answers together
+- **Plugin Brains:** Add custom Brain Agents as plugins
+- **Interrupt & Reassign:** Interrupt any agent and reassign tasks (manual or automatic)
+- **Session Replay:** Replay any session with real-time agent thinking
+- **Resource-Aware Scheduling:** Monitors memory, CPU, and agent usage; throttles as needed
+- **Content Awareness & User Query Tool:** Agents can ask you for clarification in real time
+- **Advanced Analytics Dashboard:** View usage stats and dashboards
+- **Auto-Update Checker:** Notifies you of new versions
+- **Comprehensive Legal Protection:** Expanded legal documents for maximum safety
 
 ---
 
@@ -62,6 +83,7 @@ wonderland ask "What is the capital of France?"
 
 | Command | Description |
 |---------|-------------|
+| `wonderland -setup4u` | **New:** One-step automatic setup |
 | `wonderland setup` | Configure your agents |
 | `wonderland ask <prompt>` | Ask a question |
 | `wonderland dashboard` | Live brain status dashboard |

@@ -193,6 +193,7 @@ typings/
 !releasenotes/v.1.2.3/*
 !releasenotes/v.1.2.2/*
 !HOWTOUSE.md
+!COMMAND.md
 !.gitignore
 !.npmignore
 !CHANGELOG.md

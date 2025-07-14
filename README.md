@@ -1,13 +1,13 @@
 # Wonderland CLI 1.3.0 🧠
 
 [Official Website](https://wonderland-cli-v1.vercel.app/)
-[Release Notes for v1.3.0](releasenotes/v.1.3.0/note.md)
+[Release Notes for v1.3.0](https://github.com/cheesecakeproject/wonderland-cli/blob/main/releasenotes/v.1.3.0/note.md)
 
 ![Wonderland CLI Thumbnail](https://github.com/cheesecakeproject/wonderland-cli/blob/main/images/thumbnail.png)
 
 [![npm version](https://img.shields.io/npm/v/wonderland-cli)](https://www.npmjs.com/package/wonderland-cli)
 [![GitHub](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/cheesecakeproject/wonderland-cli/tree/main)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/cheesecakeproject/wonderland-cli/blob/main/LICENSE)
 [![Node.js](https://img.shields.io/badge/node.js-%3E%3D16.0.0-brightgreen.svg)](https://nodejs.org/)
 [![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](https://www.apple.com/macos/)
 [![Ollama](https://img.shields.io/badge/ollama-required-orange.svg)](https://ollama.ai/)
@@ -24,9 +24,15 @@ wonderland ask "What is the capital of France?"
 
 ---
 
+## 📚 Command Reference
+
+See [COMMAND.md](https://github.com/cheesecakeproject/wonderland-cli/blob/main/COMMAND.md) for a complete list of all commands, what they do, and usage examples.
+
+---
+
 ## 📖 Full Manual
 
-See [HOWTOUSE.md](./HOWTOUSE.md) for a complete user & developer guide, including setup, features, advanced usage, open-source logic, and troubleshooting.
+See [HOWTOUSE.md](https://github.com/cheesecakeproject/wonderland-cli/blob/main/HOWTOUSE.md) for a complete user & developer guide, including setup, features, advanced usage, open-source logic, and troubleshooting.
 
 ---
 
